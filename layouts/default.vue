@@ -65,8 +65,18 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/'
+        },
+        {
+          icon: 'mdi-account-box-multiple',
+          title: 'Users',
+          to: '/users/list'
+        },
+        {
+          icon: 'mdi-file-document',
+          title: 'Invoices',
+          to: '/invoices/list'
         },
         {
           icon: 'mdi-chart-bubble',
