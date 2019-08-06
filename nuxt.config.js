@@ -1,4 +1,4 @@
-// const colors = require('vuetify/es5/util/colors').default
+const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
   mode: 'spa',
@@ -29,8 +29,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: ['~/plugins/vuetify.js'],
   /*
   ** Nuxt.js dev-modules
   */
