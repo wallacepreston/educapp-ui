@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-container grid-list-md>
-      <h1>Users</h1>
+      <h1>Invoices</h1>
       <v-layout wrap align-start justify-left>
-        <v-flex v-for="user in users" xs12>
-          <userCard 
-            :user="user"
+        <v-flex v-for="invoice in invoices" xs12>
+          <invoiceCard 
+            :invoice="invoice"
             :listItem="true"
-          ></userCard>
+          ></invoiceCard>
         </v-flex>
       </v-layout>
     </v-container>
@@ -16,29 +16,29 @@
 
 <script>
 import { mapState } from 'vuex'
-import userCard from '../../components/userCard'
+import invoiceCard from '../../components/invoiceCard'
 export default {
   components: {
-    userCard
+    invoiceCard
   },
 
   head () {
     return {
-      title: 'All Users'
+      title: 'All Invoices'
     }
   },
   async fetch ({ store, error }) {
     try {
-      await store.dispatch('users/fetchUsers')
+      await store.dispatch('invoices/fetchInvoices')
     } catch(err) {
       error({
         statusCode: 503,
-        message: `Cannot fetch users. [ERR]: ${err}`
+        message: `Cannot fetch invoices. [ERR]: ${err}`
       })
     }
   },
   computed: mapState({
-    users: state => state.users.users
+    invoices: state => state.invoices.invoices
   })
 }
 </script>

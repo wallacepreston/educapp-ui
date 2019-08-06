@@ -50,7 +50,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; 2019</span>
+      <span>&copy; {{new Date().getFullYear()}}</span>
     </v-footer>
   </v-app>
 </template>

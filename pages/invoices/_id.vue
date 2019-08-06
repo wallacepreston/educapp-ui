@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-container grid-list-md>
-      <userCard 
-        :user="user"
-      ></userCard>
+      <invoiceCard 
+        :invoice="invoice"
+      ></invoiceCard>
         
     </v-container>
   </div>
@@ -12,29 +12,29 @@
 <script>
 
 import { mapState } from 'vuex'
-import userCard from '../../components/userCard'
+import invoiceCard from '../../components/invoiceCard'
 
 export default {
   components: {
-    userCard
+    invoiceCard
   },
   head () {
     return {
-      title: this.user.firstName + this.user.lastName
+      title: this.invoice.firstName + this.invoice.lastName
     }
   },
   async fetch ({store, error, params}) {
     try {
-      await store.dispatch('users/fetchUser', params.id)
+      await store.dispatch('invoices/fetchInvoice', params.id)
     } catch(err) {
       error({
         statusCode: 503,
-        message: `Cannot fetch user # ${params.id}. [ERR]: ${err}`
+        message: `Cannot fetch invoice # ${params.id}. [ERR]: ${err}`
       })
     }
   },
   computed: mapState({
-    user: state => state.users.user
+    invoice: state => state.invoices.invoice
   })
 }
 </script>
