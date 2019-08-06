@@ -17,34 +17,27 @@
 </template>
 
 <script>
-import config from '../../config'
-import axios from 'axios'
-  export default {
-    head () {
-      return {
-        title: 'All Users'
-      }
-    },
-    async asyncData ({$axios, error}) {
-      try {
-        const {data: {data: users}} = await $axios.get(`${config.apiServer}/users`);
-        console.log(users)
-        return {
-          users
-        };
-      } catch(err) {
-        error({
-          statusCode: 503,
-          message: `Cannot fetch users. [ERR]: ${err}`
-        })
-      }
-    },
-    data () {
-      return {
-        
-      }
+import { mapState } from 'vuex'
+export default {
+  head () {
+    return {
+      title: 'All Users'
     }
-  }
+  },
+  async fetch ({ store, error }) {
+    try {
+      await store.dispatch('users/fetchUsers')
+    } catch(err) {
+      error({
+        statusCode: 503,
+        message: `Cannot fetch users. [ERR]: ${err}`
+      })
+    }
+  },
+  computed: mapState({
+    users: state => state.users.users
+  })
+}
 </script>
 
 <style scoped>
